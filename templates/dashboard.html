@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <div class="logo">LOGO</div>
+            <div class="user-info">
+                Welkom, {{ user.username }}
+                <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#">Realtime energie</a></li>
+                <li><a href="#">Historiek</a></li>
+                <li><a href="#">Instellingen</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="content">
+                <h2>Realtime Energie</h2>
+                {% if data.error %}
+                    <p style="color: red;">{{ data.error }}</p>
+                {% else %}
+                    <p><strong>Totaal Verbruik:</strong> <span id="verbruik">{{ data.total_power_import_kwh|default:"Geen data" }}</span> kWh</p>
+                    <p><strong>Totaal Export:</strong> <span id="export">{{ data.total_power_export_kwh|default:"Geen data" }}</span> kWh</p>
+                    <p><strong>Huidig Verbruik:</strong> <span id="huidig">{{ data.active_power_w|default:"Geen data" }}</span> W</p>
+                {% endif %}
+            </section>
+
+            <section class="content">
+                <h2>Historiek</h2>
+                <p>Hier komt de geschiedenis van energiegebruik...</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function updateEnergieData() {
+            fetch("{% url 'realtime-energie' %}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error("API Fout:", data.error);
+                        return;
+                    }
+                    document.getElementById("verbruik").innerText = data.total_power_import_kwh || "Geen data";
+                    document.getElementById("export").innerText = data.total_power_export_kwh || "Geen data";
+                    document.getElementById("huidig").innerText = data.active_power_w || "Geen data";
+                })
+                .catch(error => console.error("Fout bij ophalen energiegegevens:", error));
+        }
+
+        setInterval(updateEnergieData, 5000); // Update elke 5 seconden
+    </script>
+</body>
+</html>
