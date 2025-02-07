@@ -26,8 +26,9 @@ class CustomLoginView(FormView):
 
 # ✅ Verplaats `user_dashboard` BUITEN de class
 @login_required
+@login_required
 def user_dashboard(request):
-    """Haalt energiegegevens op en toont ze in het dashboard"""
+    """Haalt alle API-gegevens op en stuurt ze naar de template"""
     username = request.user.username
     try:
         response = requests.get(f"{API_URL}?username={username}", timeout=5)
@@ -36,8 +37,7 @@ def user_dashboard(request):
     except requests.RequestException as e:
         data = {"error": f"API-fout: {str(e)}"}
 
-    # DEBUG: Toon de JSON-response op de pagina
-    return render(request, 'dashboard.html', {'data': data, 'debug_json': data})
+    return render(request, 'dashboard.html', {'data': data})
 @login_required
 def realtime_energie_view(request):
     """Haalt real-time energiegegevens op voor de ingelogde gebruiker."""

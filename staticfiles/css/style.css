@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    background: #000000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
+}
+
+/* Login Container */
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 350px;
+}
+
+/* Titel */
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+/* Inputvelden */
+.input-group {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.input-group input:focus {
+    box-shadow: 0 0 10px #FFFFFF;
+}
+
+/* Inloggen knop */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #FFFFFF;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #CCCCCC;
+    box-shadow: 0 0 10px #FFFFFF;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+}
+
+/* Header met logo en gebruikersinformatie */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #FFFFFF;
+    font-size: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.user-info {
+    color: #ffffff;
+}
+
+/* Navigatiebalk */
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    text-shadow: 0 0 10px #FFFFFF;
+}
+
+/* Hoofdinhoud */
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.content {
+    width: 48%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Logout-knop */
+.logout-btn {
+    margin-left: 15px;
+    padding: 4px 8px;
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #cc0000;
+    box-shadow: 0 0 10px #ff0000;
+}

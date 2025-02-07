@@ -34,12 +34,13 @@
                     <p><strong>Totaal Verbruik:</strong> <span id="verbruik">{{ data.total_power_import_kwh|default:"Geen data" }}</span> kWh</p>
                     <p><strong>Totaal Export:</strong> <span id="export">{{ data.total_power_export_kwh|default:"Geen data" }}</span> kWh</p>
                     <p><strong>Huidig Verbruik:</strong> <span id="huidig">{{ data.active_power_w|default:"Geen data" }}</span> W</p>
+                     <p><canvas id="energieChart"></canvas></p>
                 {% endif %}
             </section>
 
             <section class="content">
                 <h2>Historiek</h2>
-                <p>Hier komt de geschiedenis van energiegebruik...</p>
+                <p><canvas id="energieChart"></canvas></p>
             </section>
         </main>
     </div>
@@ -64,3 +65,111 @@
     </script>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById("energieChart").getContext("2d");
+    const energieChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: [], // Tijdstippen (worden later ingevuld)
+            datasets: [
+                {
+                    label: "Zonneverbruik (kWh)",
+                    data: [],
+                    borderColor: "#2AB7CA",
+                    backgroundColor: "rgba(42, 183, 202, 0.3)",
+                    fill: true,
+                },
+                {
+                    label: "Net (kWh)",
+                    data: [],
+                    borderColor: "#9B51E0",
+                    backgroundColor: "rgba(155, 81, 224, 0.3)",
+                    fill: true,
+                },
+                {
+                    label: "Teruglevering (kWh)",
+                    data: [],
+                    borderColor: "#27AE60",
+                    backgroundColor: "rgba(39, 174, 96, 0.3)",
+                    fill: true,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: "Tijd",
+                        color: "#FFFFFF",
+                    },
+                    ticks: {
+                        color: "#FFFFFF",
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: "kWh",
+                        color: "#FFFFFF",
+                    },
+                    ticks: {
+                        color: "#FFFFFF",
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "#FFFFFF",
+                    },
+                },
+            },
+        },
+    });
+
+    // ✅ **Live data ophalen en updaten**
+    function updateChart() {
+        fetch("{% url 'realtime-energie' %}")
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("API Fout:", data.error);
+                    return;
+                }
+
+                const tijd = new Date().toLocaleTimeString();
+                energieChart.data.labels.push(tijd);
+
+
+                energieChart.data.datasets[2].data.push(data.active_power_w / 1000 || 0); // Omrekenen naar kWh
+
+                if (energieChart.data.labels.length > 10) {
+                    energieChart.data.labels.shift();
+                    energieChart.data.datasets.forEach(dataset => dataset.data.shift());
+                }
+
+                energieChart.update();
+            })
+            .catch(error => console.error("Fout bij ophalen energiegegevens:", error));
+    }
+
+    setInterval(updateChart, 5000); // Update elke 5 seconden
+});
+</script>
+<section class="content">
+    <h2>Realtime Energie</h2>
+
+    {% if data.error %}
+        <p style="color: red;">{{ data.error }}</p>
+    {% else %}
+        <ul>
+            {% for key, value in data.items %}
+                <li><strong>{{ key|title }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>

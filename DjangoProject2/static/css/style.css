@@ -10,22 +10,25 @@ body {
     color: #ffffff;
 }
 
+/* Login Container */
 .login-container {
-    background: rgba(0, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     text-align: center;
     width: 350px;
 }
 
+/* Titel */
 h2 {
     margin-bottom: 20px;
     font-size: 24px;
-    color: #00FFFF;
+    color: #FFFFFF;
 }
 
+/* Inputvelden */
 .input-group {
     margin: 15px 0;
     text-align: left;
@@ -50,14 +53,15 @@ h2 {
 }
 
 .input-group input:focus {
-    box-shadow: 0 0 10px #00FFFF;
+    box-shadow: 0 0 10px #FFFFFF;
 }
 
+/* Inloggen knop */
 button {
     width: 100%;
     padding: 12px;
-    background: #00FFFF;
-    color: #1b263b;
+    background: #FFFFFF;
+    color: #000000;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -67,10 +71,11 @@ button {
 }
 
 button:hover {
-    background: #00aaff;
-    box-shadow: 0 0 10px #00FFFF;
+    background: #CCCCCC;
+    box-shadow: 0 0 10px #FFFFFF;
 }
-/* Algemene stijl voor het dashboard */
+
+/* Dashboard container */
 .dashboard-container {
     width: 90%;
     max-width: 1200px;
@@ -79,7 +84,7 @@ button:hover {
     padding: 20px;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     color: #ffffff;
 }
 
@@ -89,15 +94,15 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background: rgba(0, 255, 0, 0.1);
-    border-bottom: 2px solid #00FF00;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #FFFFFF;
     font-size: 20px;
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #00FF00;
+    color: #FFFFFF;
 }
 
 .user-info {
@@ -110,7 +115,7 @@ nav ul {
     justify-content: space-around;
     list-style: none;
     padding: 10px;
-    background: rgba(0, 255, 0, 0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 nav ul li {
@@ -119,14 +124,14 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #00FF00;
+    color: #FFFFFF;
     font-weight: bold;
     font-size: 18px;
     transition: 0.3s;
 }
 
 nav ul li a:hover {
-    text-shadow: 0 0 10px #00FF00;
+    text-shadow: 0 0 10px #FFFFFF;
 }
 
 /* Hoofdinhoud */
@@ -141,24 +146,7 @@ main {
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
-
-/* Stijl voor de header (inclusief de logout-knop) */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background: rgba(0, 255, 0, 0.1);
-    border-bottom: 2px solid #00FF00;
-    font-size: 20px;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Logout-knop */
@@ -176,4 +164,17 @@ header {
 .logout-btn:hover {
     background: #cc0000;
     box-shadow: 0 0 10px #ff0000;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 5px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 5px 0;
+    border-radius: 8px;
+    text-align: left;
 }
